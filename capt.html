@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+		#randomfield { 
+   
+    
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    
+    width: 250px;
+    color: black;
+    border-color: black;
+    text-align: center;
+    font-size: 40px;
+    
+    
+    background-image: url('common_lib/index.png');
+}
+    </style>
+    <link rel="stylesheet" href="common_lib/bootstrap-4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="common_lib/common_styles.css">
+</head>
+<body onload="ChangeCaptcha()">
+    <div class="fadeIn first">
+        <span> User Login </span>
+    </div>
+    <form method="POST" action="/">
+        <input type="text" id="login" class="fadeIn second" name="username"
+                        placeholder="Enter Username" size="20">
+        <input type="password" id="password" class="fadeIn third" name="password"
+                        placeholder="Enter Password" size="20">
+	<input type="text" id="randomfield" name="rf" >
+<script type="text/javascript">
+	function ChangeCaptcha() {
+    var chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz"; 
+    
+    var string_length = 6; 
+
+    var ChangeCaptcha = '';
+    for (var i=0; i<string_length; i++) {
+        var rnum = Math.floor(Math.random() * chars.length);
+        ChangeCaptcha += chars.substring(rnum,rnum+1);
+    }
+    
+    document.getElementById('randomfield').value = ChangeCaptcha; 
+}
+
+function check() { 
+    if(document.getElementById('CaptchaEnter').value == document.getElementById('randomfield').value ) {
+    
+        window.open('https://www.google.co.in','_self');
+        
+        
+    }
+    else {
+        alert('Please re-check the captcha'); 
+    }
+}
+</script>
+<br><br>
+<input id="CaptchaEnter" name="cf" size="20" maxlength="6">
+<br><br>
+<input type="submit" class="fadeIn fourth" value="Log In" onclick="check()">
+</form>
+</body>
+</html>
